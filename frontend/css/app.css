@@ -1,0 +1,375 @@
+@import url('https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css');
+
+:root {
+  --ink: #14251f;
+  --mint: #dcefe7;
+  --coral: #f47c62;
+  --light-bg: rgba(255, 255, 255, 0.95);
+  --border-light: rgba(20, 37, 31, 0.08);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  background: linear-gradient(135deg, var(--mint), #f8f5ec 60%, #f47c62 150%);
+  color: var(--ink);
+  min-height: 100vh;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+}
+
+main {
+  padding-top: 2rem !important;
+  padding-bottom: 3rem !important;
+  max-width: 1200px;
+}
+
+/* Navigation & Headers */
+nav {
+  background: var(--light-bg);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  padding: 1rem 0;
+}
+
+nav a {
+  margin-right: 2rem;
+  color: var(--ink);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+nav a:hover {
+  color: var(--coral);
+}
+
+.eyebrow {
+  font: 700 0.8rem/1 sans-serif;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--coral);
+  margin-bottom: 0.5rem;
+}
+
+h1 {
+  font-size: clamp(2.5rem, 8vw, 4rem);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin-bottom: 1.5rem;
+  font-weight: 700;
+}
+
+h1 span {
+  color: var(--coral);
+}
+
+h2 {
+  font-size: 1.5rem;
+  margin-bottom: 0.75rem;
+  font-weight: 600;
+}
+
+h3 {
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+p, label {
+  font-family: sans-serif;
+  margin-bottom: 0.75rem;
+}
+
+p {
+  line-height: 1.8;
+}
+
+.lead {
+  font-family: sans-serif;
+  color: #456058;
+  font-size: 1.15rem;
+}
+
+/* Buttons */
+.btn {
+  border-radius: 8px;
+  padding: 0.65rem 1.5rem;
+  font-weight: 500;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.icon,
+.message-icon,
+.profile-avatar,
+.inline-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.inline-icon {
+  margin-right: 0.35rem;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+
+.btn-primary {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: white;
+}
+
+.btn-primary:hover {
+  background: #1f3a33;
+  border-color: #1f3a33;
+}
+
+.btn-outline-primary {
+  background: transparent;
+  border-color: var(--ink);
+  color: var(--ink);
+}
+
+.btn-outline-primary:hover {
+  background: var(--ink);
+  color: white;
+}
+
+.btn-secondary {
+  background: var(--coral);
+  border-color: var(--coral);
+  color: white;
+}
+
+.btn-secondary:hover {
+  background: #d66d53;
+  border-color: #d66d53;
+}
+
+/* Forms */
+.form-control,
+.form-select {
+  padding: 0.75rem 1rem;
+  border: 2px solid var(--border-light);
+  border-radius: 8px;
+  font-family: sans-serif;
+  font-size: 1rem;
+  transition: border-color 0.2s;
+}
+
+.form-control:focus,
+.form-select:focus {
+  border-color: var(--ink);
+  box-shadow: 0 0 0 3px rgba(20, 37, 31, 0.1);
+  outline: none;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  color: var(--ink);
+}
+
+/* Cards & Containers */
+.card, .item-card {
+  background: var(--light-bg);
+  border: 1px solid var(--border-light);
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.card:hover, .item-card:hover {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+}
+
+.badge {
+  display: inline-block;
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+}
+
+/* Stats Grid */
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.stat {
+  background: var(--light-bg);
+  border: 1px solid var(--border-light);
+  border-radius: 12px;
+  padding: 1.5rem;
+  text-align: center;
+  transition: all 0.2s ease;
+}
+
+.stat:hover {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+}
+
+.stat strong {
+  display: block;
+  font-size: 2.2rem;
+  color: var(--coral);
+  margin-bottom: 0.5rem;
+}
+
+.stat p {
+  margin: 0;
+  color: #456058;
+  font-size: 0.95rem;
+}
+
+/* Item Cards */
+.item-row,
+.item-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1.5rem;
+  padding: 1.5rem;
+}
+
+.item-row > div:first-child,
+.item-card > div:first-child {
+  flex: 1;
+}
+
+.item-row h2,
+.item-card h2 {
+  font-size: 1.4rem;
+  margin: 0.5rem 0 0.5rem;
+  font-weight: 600;
+}
+
+.item-row p,
+.item-card p {
+  margin: 0.3rem 0;
+  color: #456058;
+  font-size: 0.95rem;
+}
+
+.item-row .badge,
+.item-card .badge {
+  margin-right: 0.5rem;
+}
+
+/* Search Form */
+.search-form-container {
+  background: var(--light-bg);
+  border: 1px solid var(--border-light);
+  border-radius: 12px;
+  padding: 2rem;
+  margin-bottom: 2.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+/* Empty State */
+.empty-state {
+  text-align: center;
+  padding: 3rem 1.5rem;
+  background: var(--light-bg);
+  border: 2px dashed var(--border-light);
+  border-radius: 12px;
+  margin: 2rem 0;
+}
+
+.empty-state p {
+  font-size: 1.1rem;
+  color: #456058;
+  margin-bottom: 0;
+}
+
+/* Lists */
+ul, ol {
+  padding-left: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+li {
+  margin-bottom: 0.75rem;
+  line-height: 1.8;
+}
+
+/* Links */
+a {
+  color: var(--ink);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+a:hover {
+  color: var(--coral);
+}
+
+/* Alerts */
+.alert {
+  padding: 1.25rem 1.5rem;
+  border-radius: 8px;
+  border: 1px solid;
+  margin-bottom: 1.5rem;
+}
+
+.alert-danger {
+  background: #fee;
+  border-color: #fcc;
+  color: #c33;
+}
+
+.alert-success {
+  background: #efe;
+  border-color: #cfc;
+  color: #3c3;
+}
+
+.alert-info {
+  background: #eef;
+  border-color: #ccf;
+  color: #33c;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  main {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .item-row,
+  .item-card {
+    flex-direction: column;
+  }
+
+  .btn {
+    width: 100%;
+  }
+
+  h1 {
+    font-size: clamp(1.75rem, 6vw, 2.5rem);
+  }
+}
