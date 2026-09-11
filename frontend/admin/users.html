@@ -1,1 +1,23 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Users</title><link rel="stylesheet" href="../css/app.css"></head><body><main class="container py-5"><a href="dashboard.html">Admin dashboard</a><h1 class="mt-5">Users</h1><section id="list" class="mt-4"></section></main><script src="../js/api.js"></script><script>apiRequest('/admin/users').then(({data})=>document.querySelector('#list').innerHTML=data.users.map(user=>`<p>${user.name} · ${user.college_email} · ${user.role}</p>`).join('')).catch(error=>document.querySelector('#list').textContent=error.message)</script></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Users | Campus Lost &amp; Found</title>
+  <link rel="stylesheet" href="../css/app.css">
+</head>
+<body>
+  <header id="site-header"></header>
+  <main class="wide">
+    <h1>Users</h1>
+    <nav id="admin-nav" class="row mt-4" style="margin-bottom: var(--space-5);"></nav>
+    <section id="list"><div class="loading-state">Loading…</div></section>
+  </main>
+
+  <script src="../js/api.js"></script>
+  <script src="../js/util.js"></script>
+  <script src="../js/layout.js"></script>
+  <script src="../js/admin-nav.js"></script>
+  <script src="../js/admin-users.js"></script>
+</body>
+</html>

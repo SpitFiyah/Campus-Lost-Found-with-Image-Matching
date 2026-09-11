@@ -33,7 +33,7 @@ def run_seed():
         upload_folder.mkdir(parents=True, exist_ok=True)
         lost_user = get_or_create_user({"name": "Asha Rao", "college_email": "asha@campus.edu", "password": "demoPass123", "student_id": "DEMO-L001", "department": "Design"})
         found_user = get_or_create_user({"name": "Noah Chen", "college_email": "noah@campus.edu", "password": "demoPass123", "student_id": "DEMO-F001", "department": "Computing"})
-        if not Item.query.filter_by(name="Blue canvas backpack").first():
+        if not db.session.scalar(db.select(Item).where(Item.name == "Blue canvas backpack")):
             lost_path = upload_folder / "seed-lost.png"
             found_path = upload_folder / "seed-found.png"
             image_for("blue", lost_path)

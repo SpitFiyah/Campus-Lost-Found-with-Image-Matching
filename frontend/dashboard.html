@@ -4,101 +4,41 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Dashboard | Campus Lost &amp; Found</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="css/app.css">
   <style>
-    .dashboard-header {
-      margin-bottom: 2rem;
-    }
-
-    .action-buttons {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-      gap: 1rem;
-      margin-top: 2.5rem;
-    }
-
-    .action-buttons .btn {
-      padding: 0.8rem 1.2rem;
-      font-size: 0.95rem;
-    }
-
-    .quick-links {
-      background: rgba(255, 255, 255, 0.95);
-      border: 1px solid rgba(20, 37, 31, 0.08);
-      border-radius: 12px;
-      padding: 2rem;
-      margin-top: 2.5rem;
-    }
-
-    .quick-links h3 {
-      margin-bottom: 1.5rem;
-      font-size: 1.25rem;
-    }
-
-    @media (max-width: 768px) {
-      .action-buttons {
-        grid-template-columns: 1fr;
-      }
-    }
+    .action-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: var(--space-3); margin: var(--space-5) 0 var(--space-6); }
   </style>
 </head>
 <body>
-  <main class="container py-5">
-    <div class="dashboard-header">
-      <p class="eyebrow">Your campus desk</p>
-      <h1>Welcome, <span id="user-name" style="color: var(--coral);">there</span>.</h1>
-      <p id="page-error" class="text-danger mt-2"></p>
-    </div>
+  <header id="site-header"></header>
+  <main>
+    <p class="eyebrow">Your campus desk</p>
+    <h1>Welcome, <span id="user-name">there</span></h1>
+    <p id="page-error" class="alert alert-danger hidden"></p>
 
     <section class="stat-grid">
-      <div class="stat">
-        <p style="margin: 0 0 0.5rem; color: #999; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em;">My reports</p>
-        <strong id="item-count" style="font-size: 2.5rem; color: var(--coral);">-</strong>
-      </div>
-      <div class="stat">
-        <p style="margin: 0 0 0.5rem; color: #999; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em;">Lost</p>
-        <strong id="lost-count" style="font-size: 2.5rem; color: #dc3545;">-</strong>
-      </div>
-      <div class="stat">
-        <p style="margin: 0 0 0.5rem; color: #999; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em;">Found</p>
-        <strong id="found-count" style="font-size: 2.5rem; color: #198754;">-</strong>
-      </div>
-      <div class="stat">
-        <p style="margin: 0 0 0.5rem; color: #999; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em;">Unread</p>
-        <strong id="notification-count" style="font-size: 2.5rem; color: #0d6efd;">-</strong>
-      </div>
+      <div class="stat-tile"><span class="value" id="item-count">–</span><span class="label">My reports</span></div>
+      <div class="stat-tile"><span class="value" id="lost-count">–</span><span class="label">Lost</span></div>
+      <div class="stat-tile"><span class="value" id="found-count">–</span><span class="label">Found</span></div>
+      <div class="stat-tile"><span class="value" id="notification-count">–</span><span class="label">Unread notifications</span></div>
     </section>
 
-    <section class="action-buttons">
-      <a class="btn btn-primary" href="report-lost.html"><i class="bi bi-flag" aria-hidden="true"></i> Report Lost Item</a>
-      <a class="btn btn-secondary" href="report-found.html"><i class="bi bi-gift" aria-hidden="true"></i> Report Found Item</a>
-      <a class="btn btn-outline-primary" href="browse.html"><i class="bi bi-search" aria-hidden="true"></i> Browse Reports</a>
-      <a class="btn btn-outline-primary" href="notifications.html"><i class="bi bi-bell" aria-hidden="true"></i> Notifications</a>
-      <a class="btn btn-outline-primary" href="messages.html"><i class="bi bi-chat-dots" aria-hidden="true"></i> Messages</a>
-      <a class="btn btn-outline-primary" href="profile.html"><i class="bi bi-person" aria-hidden="true"></i> My Profile</a>
-    </section>
-
-    <div class="quick-links">
-      <h3>Other Resources</h3>
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem;">
-        <a href="browse.html" style="padding: 1rem; background: rgba(244, 124, 98, 0.1); border-radius: 8px; text-align: center; color: var(--ink); text-decoration: none; transition: all 0.2s;">
-          <div style="font-size: 1.5rem; margin-bottom: 0.5rem;"><i class="bi bi-file-earmark-text" aria-hidden="true"></i></div>
-          <div style="font-weight: 500;">My Reports</div>
-        </a>
-        <a href="matches.html" style="padding: 1rem; background: rgba(220, 239, 231, 0.5); border-radius: 8px; text-align: center; color: var(--ink); text-decoration: none; transition: all 0.2s;">
-          <div style="font-size: 1.5rem; margin-bottom: 0.5rem;"><i class="bi bi-bullseye" aria-hidden="true"></i></div>
-          <div style="font-weight: 500;">Matches</div>
-        </a>
-        <a href="settings.html" style="padding: 1rem; background: rgba(0, 0, 0, 0.05); border-radius: 8px; text-align: center; color: var(--ink); text-decoration: none; transition: all 0.2s;">
-          <div style="font-size: 1.5rem; margin-bottom: 0.5rem;"><i class="bi bi-gear" aria-hidden="true"></i></div>
-          <div style="font-weight: 500;">Settings</div>
-        </a>
-      </div>
+    <div class="action-grid">
+      <a class="btn btn-primary" href="report-form.html?type=LOST"><span data-icon="flag"></span>Report lost item</a>
+      <a class="btn btn-primary" href="report-form.html?type=FOUND"><span data-icon="plus"></span>Report found item</a>
+      <a class="btn btn-outline" href="browse.html"><span data-icon="search"></span>Browse reports</a>
+      <a class="btn btn-outline" href="matches.html"><span data-icon="check"></span>My matches</a>
+      <a class="btn btn-outline" href="messages.html"><span data-icon="chat"></span>Messages</a>
+      <a class="btn btn-outline" href="settings.html"><span data-icon="gear"></span>Settings</a>
     </div>
+
+    <h2>Recent reports</h2>
+    <div id="recent-reports"><div class="loading-state">Loading…</div></div>
   </main>
 
   <script src="js/api.js"></script>
+  <script src="js/util.js"></script>
+  <script src="js/layout.js"></script>
   <script src="js/dashboard.js"></script>
 </body>
 </html>

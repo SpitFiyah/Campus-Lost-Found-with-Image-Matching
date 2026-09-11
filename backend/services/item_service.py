@@ -5,12 +5,17 @@ from sqlalchemy import func
 from backend.extensions import db
 from backend.models.item import Item
 from backend.models.item_image import ItemImage
+from backend.models.report import Report
 from backend.utils.file_utils import save_validated_image
 
 
 ALLOWED_TYPES = {"LOST", "FOUND"}
 ALLOWED_STATUSES = {"ACTIVE", "MATCHED", "RETURNED", "CLOSED", "REMOVED"}
-LOCATIONS = {"Block A", "Block B", "Library", "Cafeteria", "Auditorium", "Parking", "Sports Ground", "Hostel", "Main Gate", "Laboratory"}
+UPPERCASE_FILTER_FIELDS = {"type", "status"}
+LOCATIONS = ("Block A", "Block B", "Library", "Cafeteria", "Auditorium", "Parking", "Sports Ground", "Hostel", "Main Gate", "Laboratory")
+EDITABLE_ITEM_FIELDS = ("name", "category", "description", "color", "location")
+MAX_REPORT_REASON_LENGTH = 80
+MAX_REPORT_DESCRIPTION_LENGTH = 500
 
 
 def parse_item_data(data):
@@ -70,12 +75,38 @@ def search_items(filters):
     query = db.select(Item).where(Item.status != "REMOVED").order_by(Item.created_at.desc())
     if filters.get("q"):
         query = query.where(func.lower(Item.name).contains(str(filters["q"]).lower()))
+    if filters.get("user_id"):
+        try:
+            query = query.where(Item.user_id == int(filters["user_id"]))
+        except ValueError:
+            return None, ("INVALID_FILTER", "user_id filter must be numeric.")
     for field in ("type", "category", "color", "location", "status"):
         if filters.get(field):
-            query = query.where(getattr(Item, field) == str(filters[field]).strip().upper() if field == "type" else getattr(Item, field) == str(filters[field]).strip())
+            value = str(filters[field]).strip()
+            value = value.upper() if field in UPPERCASE_FILTER_FIELDS else value
+            query = query.where(getattr(Item, field) == value)
     if filters.get("date"):
         try:
             query = query.where(Item.date_lost_found == date.fromisoformat(filters["date"]))
         except ValueError:
             return None, ("INVALID_FILTER", "Date filter must use YYYY-MM-DD.")
     return db.session.scalars(query).all(), None
+
+
+def update_item(item, fields):
+    for field in EDITABLE_ITEM_FIELDS:
+        if field in fields and str(fields[field]).strip():
+            setattr(item, field, str(fields[field]).strip())
+    db.session.commit()
+    return item
+
+
+def create_report(reporter_id, item, data):
+    reason = str(data.get("reason", "")).strip()
+    if not reason or len(reason) > MAX_REPORT_REASON_LENGTH:
+        return None, ("INVALID_REPORT", "A report reason is required.")
+    description = str(data.get("description", "")).strip()[:MAX_REPORT_DESCRIPTION_LENGTH] or None
+    report = Report(reporter_id=reporter_id, item_id=item.id, reason=reason, description=description)
+    db.session.add(report)
+    db.session.commit()
+    return report, None

@@ -14,5 +14,18 @@ class Report(db.Model):
     status = db.Column(db.String(20), nullable=False, default="PENDING", index=True)
     created_at = db.Column(db.DateTime, nullable=False, default=lambda: datetime.now(timezone.utc))
 
+    reporter = db.relationship("User")
+    item = db.relationship("Item")
+
     def to_dict(self):
-        return {"id": self.id, "reporter_id": self.reporter_id, "item_id": self.item_id, "reason": self.reason, "description": self.description, "status": self.status, "created_at": self.created_at.isoformat()}
+        return {
+            "id": self.id,
+            "reporter_id": self.reporter_id,
+            "reporter_name": self.reporter.name if self.reporter else None,
+            "item_id": self.item_id,
+            "item_name": self.item.name if self.item else None,
+            "reason": self.reason,
+            "description": self.description,
+            "status": self.status,
+            "created_at": self.created_at.isoformat(),
+        }

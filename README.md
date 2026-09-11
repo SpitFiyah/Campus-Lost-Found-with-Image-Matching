@@ -4,7 +4,14 @@ A campus-focused lost and found platform that combines report metadata with inte
 
 ## Current status
 
-Phase 1 foundation and Phase 2 authentication are implemented. The app includes Flask app factory, MySQL configuration, SQLAlchemy extension, CORS policy, upload limits, consistent JSON errors, secure session authentication, role-aware authorization, profile updates, frontend auth forms, and a normalized schema contract.
+The full report -> match -> message -> return workflow is implemented end to
+end: authentication and profiles, lost/found reporting with multi-image
+upload, automatic image-similarity matching with notifications, in-platform
+messaging, match accept/reject/return actions, and an admin console (users,
+all reports, flagged-report review, and statistics). See
+`docs/architecture.md` for how the pieces fit together and
+`docs/matching-algorithm.md` for exactly how matching works (a color-histogram
+similarity score, not a pretrained model) and its known limitations.
 
 ## Run on Windows
 
@@ -31,7 +38,7 @@ Or launch both servers together:
 
 Command Prompt users can run `start.bat`. The launcher expects `.venv` and `.env` to exist, serves the frontend at `http://localhost:5500`, and runs Flask at `http://localhost:5000`.
 
-The API is available at `http://localhost:5000/api/health`. The Phase 1 landing page is available at `http://localhost:5500`.
+The API is available at `http://localhost:5000/api/health`. The landing page is available at `http://localhost:5500`.
 
 To load demonstration users, images, a lost/found pair, a potential match, and notifications:
 
@@ -39,25 +46,22 @@ To load demonstration users, images, a lost/found pair, a potential match, and n
 .\.venv\Scripts\python.exe -m database.seed
 ```
 
-Demo accounts use the password `demoPass123` and the college emails `asha@campus.edu` and `noah@campus.edu`.
+Demo accounts use the password `demoPass123` and the college emails `asha@campus.edu` and `noah@campus.edu`. Neither demo account is an admin; promote one via SQL (`UPDATE users SET role = 'ADMIN' WHERE college_email = '...'`) to reach `/admin/*`.
 
-## Planned structure
+Running without MySQL installed (e.g. to try the frontend locally): set `DATABASE_URL=sqlite:///dev.sqlite3` in `.env` instead. `tests/` already runs entirely against an in-memory SQLite database and needs no database server at all.
+
+## Project structure
 
 ```text
 backend/      app factory, config, extensions, routes, models, services, matching, utils, uploads
 frontend/     public and student HTML pages, admin pages, css, js
-database/     schema.sql, seed.sql
-docs/         architecture, database, API, matching decisions
+database/     schema.sql, seed.py
+docs/         architecture, database, API, matching decisions, development log
+tests/        pytest suite (auth, items, matching, and more)
 ```
 
-## Development phases
+## Tests
 
-1. Foundation and database contract (complete)
-2. Authentication, roles, and student profiles (complete)
-3. Item reporting, secure image uploads, and search
-4. Embeddings, candidate retrieval, weighted matching, and notifications
-5. Messaging, ownership verification, and return workflow
-6. Admin moderation, analytics, hotspots, seed data, and full tests
-7. UI refinement, security review, documentation, and demonstration readiness
-
-Before Phase 3, verify registration/login from the browser, the health endpoint, MySQL schema import, frontend-to-API CORS requests, and clean installation from a fresh virtual environment.
+```powershell
+.\.venv\Scripts\python.exe -m pytest tests
+```

@@ -4,121 +4,56 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>About | Campus Lost &amp; Found</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="css/app.css">
-  <style>
-    .about-section {
-      background: rgba(255, 255, 255, 0.95);
-      border: 1px solid rgba(20, 37, 31, 0.08);
-      border-radius: 12px;
-      padding: 2.5rem;
-      margin-bottom: 2rem;
-    }
-
-    .feature-list {
-      list-style: none;
-      padding: 0;
-    }
-
-    .feature-list li {
-      padding: 1rem;
-      padding-left: 3rem;
-      position: relative;
-      margin-bottom: 1rem;
-      border-left: 2px solid rgba(244, 124, 98, 0.3);
-    }
-
-    .feature-list li:before {
-      content: '\\2713';
-      position: absolute;
-      left: 1rem;
-      color: var(--coral);
-      font-weight: bold;
-      font-size: 1.2rem;
-    }
-
-    .faq-item {
-      background: rgba(255, 255, 255, 0.95);
-      border: 1px solid rgba(20, 37, 31, 0.08);
-      border-radius: 8px;
-      padding: 1.5rem;
-      margin-bottom: 1rem;
-    }
-
-    .faq-item h3 {
-      font-size: 1.1rem;
-      margin-bottom: 0.75rem;
-      color: var(--ink);
-    }
-
-    .faq-item p {
-      margin: 0;
-      color: #666;
-    }
-  </style>
 </head>
 <body>
-  <main class="container py-5">
-    <a href="index.html" class="btn btn-outline-primary" style="font-size: 0.9rem;"><i class="bi bi-arrow-left" aria-hidden="true"></i> Back to Home</a>
+  <header id="site-header"></header>
+  <main>
+    <h1>A clearer way back to your things</h1>
+    <p class="lead">Campus Lost &amp; Found combines report details — category, location, date, color — with image similarity to surface potential matches. A match is a lead, not proof of ownership. Always verify a private detail before arranging a return.</p>
 
-    <h1 class="mt-4">A Clearer Way Back</h1>
-    <p class="lead col-lg-8">Campus Lost &amp; Found combines report details, location, dates, colors, and image similarity to surface potential matches. A match is a lead, not proof of ownership. Always verify private details before arranging returns.</p>
-
-    <section class="about-section mt-5">
-      <h2 style="margin-bottom: 1.5rem;">How It Works</h2>
-      <ul class="feature-list">
-        <li><strong>Report Items</strong> - Submit LOST or FOUND reports with photos and details</li>
-        <li><strong>Smart Matching</strong> - Our AI analyzes item similarity using visual and textual data</li>
-        <li><strong>Get Notified</strong> - Receive alerts when potential matches are found</li>
-        <li><strong>Secure Messaging</strong> - Message other users within the platform</li>
-        <li><strong>Verify Ownership</strong> - Exchange private verification details before returns</li>
-        <li><strong>Track Progress</strong> - Monitor item status and conversation history</li>
+    <section class="card mt-6">
+      <h2>How it works</h2>
+      <ul>
+        <li><strong>Report an item.</strong> Submit a LOST or FOUND report with at least one photo.</li>
+        <li><strong>Automatic matching.</strong> New reports are compared against active reports of the opposite type in the same category and location, using a color-similarity score on the uploaded photos plus how closely the location, date, and color line up.</li>
+        <li><strong>Get notified.</strong> Both sides of a potential match receive a notification.</li>
+        <li><strong>Message and verify.</strong> Message the other person inside the platform and confirm a private detail before meeting.</li>
+        <li><strong>Mark it returned.</strong> Once ownership is confirmed, mark the match as returned.</li>
       </ul>
     </section>
 
-    <section class="about-section">
-      <h2 style="margin-bottom: 1.5rem;">Safety & Privacy</h2>
-      <p style="margin-bottom: 1.5rem;">Your college email and student ID verify campus membership. All communications happen within the platform for security. Private verification details (marks, initials, etc.) are never shared publicly.</p>
-      <div style="background: rgba(220, 239, 231, 0.5); padding: 1.5rem; border-radius: 8px; border-left: 4px solid var(--ink);">
-        <strong>💡 Tip:</strong> Always verify ownership by asking about a private detail only the owner would know (e.g., "What's written on the inside?").
-      </div>
+    <section class="card">
+      <h2>Safety &amp; privacy</h2>
+      <p>Your college email and student ID verify campus membership. All messaging happens inside the platform. A private verification detail you set when reporting an item (for example, a mark or initials) is never shown publicly — only you can confirm it when someone contacts you.</p>
+      <p class="muted">Tip: ask the other person to describe a detail only the real owner would know before agreeing to meet.</p>
     </section>
 
-    <section class="about-section">
-      <h2 style="margin-bottom: 1.5rem;">Frequently Asked Questions</h2>
-      
-      <div class="faq-item">
-        <h3>What if I found an item but don't know who owns it?</h3>
-        <p>Report it as a FOUND item. Include a clear photo and detailed description. The system will match it with LOST reports automatically.</p>
+    <section class="card">
+      <h2>Frequently asked questions</h2>
+      <div class="stack">
+        <div>
+          <h3>I found an item but don't know who owns it. What do I do?</h3>
+          <p class="item-meta">Report it as a FOUND item with a clear photo and description. It will be compared automatically against LOST reports.</p>
+        </div>
+        <div>
+          <h3>How do I prove I own an item?</h3>
+          <p class="item-meta">Add a private verification detail when you report it. When someone contacts you about it, ask them to name that detail before you confirm.</p>
+        </div>
+        <div>
+          <h3>Can I trust a match?</h3>
+          <p class="item-meta">A match is a lead based on visual and metadata similarity, not confirmation. Always verify a private detail and meet in a public campus location.</p>
+        </div>
+        <div>
+          <h3>What image formats are supported?</h3>
+          <p class="item-meta">JPEG, PNG, and WebP, up to 5 MB per photo. Clear, well-lit photos produce better matches.</p>
+        </div>
       </div>
-
-      <div class="faq-item">
-        <h3>How do I prove I own an item?</h3>
-        <p>When reporting, add a private verification detail (something only you'd know). When contacted, ask the other person this detail to confirm ownership.</p>
-      </div>
-
-      <div class="faq-item">
-        <h3>Can I trust the matches?</h3>
-        <p>Matches are leads based on visual similarity and description. Always verify ownership through private details and meet in public spaces on campus.</p>
-      </div>
-
-      <div class="faq-item">
-        <h3>Is my location data private?</h3>
-        <p>You only enter where you lost/found the item (e.g., "Library", "Block A"). We don't track real-time location or share personal contact info.</p>
-      </div>
-
-      <div class="faq-item">
-        <h3>What image formats are supported?</h3>
-        <p>JPEG, PNG, and WebP formats. Maximum file size is 5MB. Clear, well-lit photos help improve matches.</p>
-      </div>
-    </section>
-
-    <section class="about-section" style="background: linear-gradient(135deg, var(--mint), #f8f5ec 60%); border: 1px solid rgba(244, 124, 98, 0.2);">
-      <h2 style="margin-bottom: 1rem;">Ready to find your items?</h2>
-      <p style="margin-bottom: 1.5rem;">Join thousands of students reuniting lost items every day.</p>
-      <a href="dashboard.html" class="btn btn-primary">Go to Dashboard</a>
-      <a href="browse.html" class="btn btn-outline-primary" style="margin-left: 1rem;">Browse Reports</a>
     </section>
   </main>
+
+  <script src="js/api.js"></script>
+  <script src="js/util.js"></script>
+  <script src="js/layout.js"></script>
 </body>
 </html>

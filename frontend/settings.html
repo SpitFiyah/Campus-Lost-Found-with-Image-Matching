@@ -1,1 +1,47 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Settings</title><link rel="stylesheet" href="css/app.css"></head><body><main class="container py-5"><a href="dashboard.html">Dashboard</a><h1 class="mt-5">Settings</h1><p class="lead">Your account uses secure HTTP-only sessions. Sign out when using a shared campus computer.</p><button id="logout" class="btn btn-primary">Sign out</button></main><script src="js/api.js"></script><script>document.querySelector('#logout').onclick=async()=>{await apiRequest('/auth/logout',{method:'POST'});location.href='index.html'}</script></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Settings | Campus Lost &amp; Found</title>
+  <link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+  <header id="site-header"></header>
+  <main>
+    <a href="profile.html" class="btn btn-outline btn-sm"><span data-icon="back"></span>Back to profile</a>
+    <h1 class="mt-4">Settings</h1>
+
+    <div class="card" style="max-width: 480px;">
+      <h2>Edit profile</h2>
+      <form id="settings-form">
+        <div class="field">
+          <label for="name">Full name</label>
+          <input class="input" id="name" required>
+        </div>
+        <div class="field">
+          <label for="department">Department</label>
+          <input class="input" id="department" required>
+        </div>
+        <div class="field">
+          <label for="phone">Phone (optional)</label>
+          <input class="input" id="phone">
+        </div>
+        <button class="btn btn-primary" type="submit"><span data-icon="save"></span>Save changes</button>
+        <div id="settings-message" class="mt-4"></div>
+      </form>
+    </div>
+
+    <div class="card" style="max-width: 480px;">
+      <h2>Session</h2>
+      <p class="muted">Your account uses secure HTTP-only sessions. Sign out when using a shared campus computer.</p>
+      <button id="logout" class="btn btn-outline"><span data-icon="logout"></span>Sign out</button>
+    </div>
+  </main>
+
+  <script src="js/api.js"></script>
+  <script src="js/util.js"></script>
+  <script src="js/layout.js"></script>
+  <script src="js/settings.js"></script>
+</body>
+</html>

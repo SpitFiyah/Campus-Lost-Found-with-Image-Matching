@@ -4,42 +4,38 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Browse reports | Campus Lost &amp; Found</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="css/app.css">
 </head>
 <body>
-  <main class="container py-5">
-    <div style="margin-bottom: 2rem;">
-      <a href="index.html" class="btn btn-outline-primary" style="font-size: 0.9rem;"><i class="bi bi-arrow-left" aria-hidden="true"></i> Back to Home</a>
-    </div>
+  <header id="site-header"></header>
+  <main class="wide">
+    <h1>Browse reports</h1>
+    <p class="lead">Search items people have reported as lost or found on campus.</p>
 
-    <h1>Browse Reports</h1>
-    <p class="lead">Find items people have reported as lost or found on campus.</p>
-
-    <div class="search-form-container">
-      <form id="search-form" class="row g-3">
-        <div class="col-md-6">
-          <label for="search" class="form-label">Search by item name</label>
-          <input id="search" class="form-control" placeholder="e.g., laptop, wallet, keys..." type="text">
+    <form id="search-form" class="card">
+      <div class="field-row">
+        <div class="field mt-0">
+          <label for="search">Search by item name</label>
+          <input id="search" class="input" placeholder="e.g. laptop, wallet, keys" type="text">
         </div>
-        <div class="col-md-3">
-          <label for="type" class="form-label">Filter by type</label>
-          <select id="type" class="form-select">
+        <div class="field mt-0">
+          <label for="type">Type</label>
+          <select id="type" class="select">
             <option value="">All types</option>
-            <option>LOST</option>
-            <option>FOUND</option>
+            <option value="LOST">Lost</option>
+            <option value="FOUND">Found</option>
           </select>
         </div>
-        <div class="col-md-3" style="display: flex; align-items: flex-end;">
-          <button type="submit" class="btn btn-primary w-100">Search</button>
-        </div>
-      </form>
-    </div>
+      </div>
+      <button type="submit" class="btn btn-primary"><span data-icon="search"></span>Search</button>
+    </form>
 
-    <section id="item-list" class="mt-4"></section>
+    <section id="item-list" class="item-grid mt-6"></section>
   </main>
 
   <script src="js/api.js"></script>
+  <script src="js/util.js"></script>
+  <script src="js/layout.js"></script>
   <script src="js/items.js"></script>
 </body>
 </html>

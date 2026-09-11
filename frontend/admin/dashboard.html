@@ -1,1 +1,28 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Admin dashboard</title><link rel="stylesheet" href="../css/app.css"></head><body><main class="container py-5"><p class="eyebrow">Operations</p><h1>Campus <span>overview</span></h1><section id="stats" class="stat-grid mt-5"></section><h2 class="mt-5">Hotspots</h2><section id="hotspots"></section></main><script src="../js/api.js"></script><script>apiRequest('/admin/statistics').then(({data})=>{document.querySelector('#stats').innerHTML=[['Users',data.total_users],['Reports',data.total_items],['Returned',data.returned_items],['Pending matches',data.pending_matches],['Return rate',`${data.return_rate}%`]].map(([label,value])=>`<div class="stat"><small>${label}</small><strong>${value}</strong></div>`).join('');document.querySelector('#hotspots').innerHTML=data.hotspots.map(item=>`<p>${item.location}: <strong>${item.reports}</strong> reports</p>`).join('')}).catch(error=>document.querySelector('#stats').textContent=error.message);</script></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Admin overview | Campus Lost &amp; Found</title>
+  <link rel="stylesheet" href="../css/app.css">
+</head>
+<body>
+  <header id="site-header"></header>
+  <main class="wide">
+    <p class="eyebrow">Operations</p>
+    <h1>Campus overview</h1>
+    <nav id="admin-nav" class="row mt-4" style="margin-bottom: var(--space-5);"></nav>
+
+    <section id="stats" class="stat-grid"><div class="loading-state">Loading…</div></section>
+
+    <h2>Hotspots</h2>
+    <section id="hotspots"></section>
+  </main>
+
+  <script src="../js/api.js"></script>
+  <script src="../js/util.js"></script>
+  <script src="../js/layout.js"></script>
+  <script src="../js/admin-nav.js"></script>
+  <script src="../js/admin-dashboard.js"></script>
+</body>
+</html>

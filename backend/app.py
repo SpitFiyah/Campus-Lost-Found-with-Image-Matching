@@ -49,6 +49,16 @@ def create_app(config_class=Config):
             }
         ), 404
 
+    @app.errorhandler(500)
+    def internal_error(error):
+        app.logger.exception("Unhandled server error: %s", error)
+        return jsonify(
+            {
+                "success": False,
+                "error": {"code": "INTERNAL_ERROR", "message": "Something went wrong on our end. Please try again."},
+            }
+        ), 500
+
     logging.basicConfig(level=logging.INFO)
     return app
 

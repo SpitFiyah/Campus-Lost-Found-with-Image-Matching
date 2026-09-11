@@ -17,6 +17,18 @@ def owned_match(match):
     return match and (match.lost_item.user_id == g.current_user.id or match.found_item.user_id == g.current_user.id)
 
 
+@matches_bp.get("")
+@login_required
+def my_matches():
+    own_item_ids = db.session.scalars(db.select(Item.id).where(Item.user_id == g.current_user.id)).all()
+    matches = db.session.scalars(
+        db.select(Match)
+        .where(Match.lost_item_id.in_(own_item_ids) | Match.found_item_id.in_(own_item_ids))
+        .order_by(Match.final_score.desc())
+    ).all()
+    return jsonify({"success": True, "data": {"matches": [match.to_dict() for match in matches]}, "message": "Your matches loaded."})
+
+
 @matches_bp.get("/item/<int:item_id>")
 @login_required
 def item_matches(item_id):

@@ -1,1 +1,36 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Statistics</title><link rel="stylesheet" href="../css/app.css"></head><body><main class="container py-5"><a href="dashboard.html">Admin dashboard</a><h1 class="mt-5">Statistics</h1><section id="stats" class="stat-grid mt-4"></section></main><script src="../js/api.js"></script><script>apiRequest('/admin/statistics').then(({data})=>document.querySelector('#stats').innerHTML=Object.entries(data).filter(([key])=>key!=='hotspots').map(([key,value])=>`<div class="stat"><small>${key.replaceAll('_',' ')}</small><strong>${value}</strong></div>`).join('')).catch(error=>document.querySelector('#stats').textContent=error.message)</script></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Statistics | Campus Lost &amp; Found</title>
+  <link rel="stylesheet" href="../css/app.css">
+</head>
+<body>
+  <header id="site-header"></header>
+  <main class="wide">
+    <h1>Statistics</h1>
+    <p class="lead">A breakdown by category and location, for spotting patterns the overview tiles don't show.</p>
+    <nav id="admin-nav" class="row mt-4" style="margin-bottom: var(--space-5);"></nav>
+
+    <section id="lost-found" class="stat-grid"><div class="loading-state">Loading…</div></section>
+
+    <div class="field-row">
+      <div>
+        <h2>By category</h2>
+        <section id="by-category"></section>
+      </div>
+      <div>
+        <h2>By location</h2>
+        <section id="by-location"></section>
+      </div>
+    </div>
+  </main>
+
+  <script src="../js/api.js"></script>
+  <script src="../js/util.js"></script>
+  <script src="../js/layout.js"></script>
+  <script src="../js/admin-nav.js"></script>
+  <script src="../js/admin-statistics.js"></script>
+</body>
+</html>

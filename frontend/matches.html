@@ -1,1 +1,23 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Possible matches</title><link rel="stylesheet" href="css/app.css"></head><body><main class="container py-5"><a href="dashboard.html">Dashboard</a><h1 class="mt-5">Possible <span>matches</span></h1><section id="list" class="mt-4"></section></main><script src="js/api.js"></script><script>const id=new URLSearchParams(location.search).get('id');apiRequest(`/items/${id}/matches`).then(({data})=>{document.querySelector('#list').innerHTML=data.matches.map(match=>`<article class="stat mb-3"><span class="badge text-bg-warning">${match.status}</span><h2>${match.found_item.name}</h2><p>${match.found_item.location} · ${match.found_item.date_lost_found}</p><strong>Match score: ${Math.round(match.final_score)}%</strong><div class="mt-3"><button class="btn btn-primary" onclick="updateMatch(${match.id},'accept')">Accept</button> <button class="btn btn-outline-dark" onclick="updateMatch(${match.id},'reject')">Reject</button></div></article>`).join('')||'<p>No potential matches yet.</p>'}).catch(error=>document.querySelector('#list').textContent=error.message);async function updateMatch(id,action){await apiRequest(`/matches/${id}/${action}`,{method:'POST'});location.reload()}</script></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Possible matches | Campus Lost &amp; Found</title>
+  <link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+  <header id="site-header"></header>
+  <main>
+    <a href="dashboard.html" class="btn btn-outline btn-sm"><span data-icon="back"></span>Back to dashboard</a>
+    <h1 class="mt-4">Possible matches</h1>
+    <p class="lead">Review and act on potential matches. Accepting a match doesn't confirm ownership — always verify a private detail first.</p>
+    <section id="list"><div class="loading-state">Loading…</div></section>
+  </main>
+
+  <script src="js/api.js"></script>
+  <script src="js/util.js"></script>
+  <script src="js/layout.js"></script>
+  <script src="js/matches.js"></script>
+</body>
+</html>
